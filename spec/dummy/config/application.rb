@@ -3,7 +3,10 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
-require "superb_auth"
+require 'superb_auth'
+require 'omniauth-facebook'
+require 'omniauth-vkontakte'
+require 'omniauth-twitter'
 
 module Dummy
   class Application < Rails::Application

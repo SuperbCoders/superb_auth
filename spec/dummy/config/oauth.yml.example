@@ -1,0 +1,16 @@
+development: &defaults
+  facebook:
+    app_id: 000000000000000
+    app_secret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  vkontakte:
+    app_id: 0000000
+    app_secret: xxxxxxxxxxxxxxxxxxxx
+  twitter:
+    app_id: xxxxxxxxxxxxxxxxxxxxxxxxx
+    app_secret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  gmail:
+    app_id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    app_secret: xxxxxxxxxxxxxxxxxxxxxxxx
+
+test:
+  <<: *defaults

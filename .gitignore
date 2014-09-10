@@ -7,3 +7,6 @@ spec/dummy/log/*.log
 spec/dummy/tmp/
 spec/dummy/.sass-cache
 .DS_Store
+
+# Credentials
+spec/dummy/config/oauth.yml
