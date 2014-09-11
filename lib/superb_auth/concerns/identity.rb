@@ -13,36 +13,14 @@ module SuperbAuth
         validates :uid, uniqueness: { scope: :provider }
 
         serialize :data
-      end
-
-      def link
-        case provider
-        when 'facebook' then (data || {}).fetch('info', {}).fetch('urls', {}).fetch('Facebook', nil)
-        when 'vkontakte' then (data || {}).fetch('info', {}).fetch('urls', {}).fetch('Vkontakte', nil)
-        when 'twitter' then (data || {}).fetch('info', {}).fetch('urls', {}).fetch('Twitter', nil)
-        else nil
-        end
-      end
-
-      def avatar
-        avatar = (data || {}).fetch('info', {}).fetch('image', nil)
-        avatar = avatar.gsub('_normal.', '.') if avatar && provider == 'twitter'
-        avatar = process_uri(avatar) if avatar && provider == 'facebook'
-        avatar
-      end
-
-      def name
-        (data || {}).fetch('info', {}).fetch('name', nil)
+        delegate :email, :name, :avatar, :link, to: :oauth_adapter
       end
 
       private
 
-        def process_uri(uri)
-          require 'open-uri'
-          require 'open_uri_redirections'
-          open(uri, allow_redirections: :safe) do |r|
-            r.base_uri.to_s
-          end
+        # @return [SuperbAuth::OAuth::Base] adapter for reading info from raw OAuth data
+        def oauth_adapter
+          SuperbAuth.adapter_for(data)
         end
 
     end

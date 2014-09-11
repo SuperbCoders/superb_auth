@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
          :omniauthable, omniauth_providers: %w(facebook vkontakte twitter)
   include SuperbAuth::Concerns::Omniauthable
   include SuperbAuth::Concerns::NonEmailAuthenticable
+
+  oauth_attr :email
 end
