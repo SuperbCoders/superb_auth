@@ -24,7 +24,6 @@ class SuperbAuth::OmniauthCallbacksController < Devise::OmniauthCallbacksControl
         redirect_after_authenticate_with_identity_signed_in
       else
         # User is unauthorized. Authorize him
-        flash[:notice] = I18n.t('omniauth_callbacks.all.logged_in')
         sign_in @identity.user
         redirect_after_authenticate_with_identity
       end
@@ -58,7 +57,7 @@ class SuperbAuth::OmniauthCallbacksController < Devise::OmniauthCallbacksControl
     end
 
     def redirect_after_authenticate_with_identity
-      redirect_to main_app.root_url
+      redirect_to main_app.root_url, notice: I18n.t('omniauth_callbacks.all.logged_in')
     end
 
     def redirect_after_authenticate_without_identity_signed_id
