@@ -25,7 +25,7 @@ module SuperbAuth
       end
 
       def link
-        (data || {}).fetch('info', {}).fetch('urls', {}).fetch(provider.camelize, nil)
+        (data || {}).fetch('info', {}).fetch('urls', {}).fetch(provider.to_s.camelize, nil)
       end
 
       def avatar
